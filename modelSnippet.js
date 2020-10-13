@@ -58,8 +58,9 @@ snippet.rprocess = function (states, params, t, dt, covar) {
   E += (trans[0] - trans[2] - trans[3]) 
   I += (trans[2] - trans[4] - trans[5]) 
   R = pop - S - E - I
-  H += trans[4] 
-  return {S, E, I, R, H}
+  H += trans[4]
+  
+  return {S: S, E: E, I: I, R: R, H: H};
 }
 
 snippet.initializer = function(params, covar, args) {
