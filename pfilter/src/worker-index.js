@@ -13,7 +13,7 @@ const workerfn = self.workerfn = async (...args) => {
       console.error(e);
       result =  NaN;
     }
-    console.debug("Calculation time: " , new Date() - date)
+    // console.debug("Calculation time in pfilter: " , new Date() - date)
     resolve(result);
   }
 
