@@ -261,7 +261,7 @@ exports.pfilter = function (paramSet, args) {
     predMean: predm,
     predVar: predv,
     filterMean: filtm,
-    saveStates: xparticles[xparticles.length - 1],    /* In the Covid model we only need the states in the last time. R returns 'pparticles'*/
+    saveStates: xparticles,
     savedParams: pparticles,
     loglik: loglik.reduce((a,b) => a + b, 0)
   }
