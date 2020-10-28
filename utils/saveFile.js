@@ -1,7 +1,7 @@
 
 let  createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
-const saveFile = function(name, data) {
+const saveFile = function(path, name, data) {
   let headerStates = [];
   let dataLength = 1;
   let header = Object.keys(data[0]);
@@ -27,7 +27,7 @@ const saveFile = function(name, data) {
 
   for (let k = 0; k < dataLength; k++) {
     const csvWriterFilter = createCsvWriter({
-      path: `./${name}${k}.csv`,
+      path: `${path}/${name}${k}.csv`,
       header: headerStates
     });
     if( dataLength === 1) {
