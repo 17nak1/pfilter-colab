@@ -8,7 +8,7 @@ const pfilterData = function (covarFile, dataFile) {
   let currentParams = []; 
   let temp, file;
   let data;
-  file = fs.readFileSync(`./samples/${covarFile}`).toString();
+  file = fs.readFileSync(covarFile).toString();
   let lines = file.split(/\r\n|\n/);
   let dataCovar_name = lines[0].replace(/['"]+/g, '').split(',');
   dataCovar_name.shift();
@@ -26,7 +26,7 @@ const pfilterData = function (covarFile, dataFile) {
   }
 
   
-  file = fs.readFileSync(`./samples/${dataFile}`).toString()
+  file = fs.readFileSync(dataFile).toString()
   lines = file.split(/\r\n|\n/);
   let dataCases_name = lines[0].replace(/['"]+/g, '').split(',');
   dataCases_name.shift();
