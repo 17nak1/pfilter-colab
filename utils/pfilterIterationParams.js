@@ -1,13 +1,13 @@
 var fs = require("fs");
 
-const pfilterIterationParams = function (iter, file) {
+const pfilterIterationParams = function (iter, filePath) {
   
   let currentParams = [];
   let params =[];
   let temp, file;
   let data;
   
-  file = fs.readFileSync(file).toString()
+  file = fs.readFileSync(filePath).toString()
   lines = file.split(/\r\n|\n/);
   let currentParams_name = lines[0].replace(/['"]+/g, '').split(',');
   for (let i = 1; i < lines.length ; i++) {
