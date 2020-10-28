@@ -30,7 +30,11 @@ const saveFile = function(name, data) {
       path: `./${name}${k}.csv`,
       header: headerStates
     });
-    csvWriterFilter.writeRecords(data[k]);
+    if( dataLength === 1) {
+      csvWriterFilter.writeRecords(data);  
+    } else {
+      csvWriterFilter.writeRecords(data[k]);
+    }
   }
   
 }

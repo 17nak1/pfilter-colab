@@ -1,9 +1,8 @@
 var fs = require("fs");
 
-const pfilterIterationParams = function (iter, filePath) {
+const readFile = function (filePath) {
   
   let currentParams = [];
-  let params =[];
   let temp, file;
   let data;
   
@@ -21,10 +20,7 @@ const pfilterIterationParams = function (iter, filePath) {
       currentParams.push(data);
     }
   }
-  for (let i = 0; i < iter; i++) {
-    params.push(...currentParams);
-  }
-  return params;
+  return currentParams;
 }
 
 module.exports = readFile;
