@@ -60,7 +60,7 @@ snippet.rprocess = function (states, params, t, dt, covar) {
   R = pop - S - E - I
   H += trans[4]
   
-  return {S: S, E: E, I: I, R: R, H: H};
+  return {S, E, I, R, H};
 }
 
 snippet.initializer = function(params, covar, args) {
@@ -71,7 +71,7 @@ snippet.initializer = function(params, covar, args) {
   let I = Math.round(m * params.I_0);
   let R = Math.round(m * params.R_0);
   let H = 0;
-  return {S: S, E: E, I: I, R: R, H: H};
+  return {S, E, I, R, H};
 }
 
 snippet.dmeasure = function (data ,hiddenState, params, giveLog = 1) {
