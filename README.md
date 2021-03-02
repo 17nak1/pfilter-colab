@@ -25,6 +25,6 @@ node pfilterOnNode.js
 
 By default, the model works on the [KDS Distributed Computer](https://portal.distributed.computer/) and uses the keystore located in `~/.dcp/default.keystore`.
 
-the final results includes different distributions saved as `savedstates.csv` and also the mean values of all distributions `filterMean.csv` in the results folder.
+the final results includes different distributions saved as `savedstates.csv` and also the mean values of all distributions `filterMean.csv` in the results folder. For example the column `S` in the  `savedstates0.csv` can be plotted as a sample distribution for the susceptible class.
 
 `epi-fit.js`  also returns one more CSV file (savedStates.csv) that will be used later as an input in the forward model.

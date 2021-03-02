@@ -88,10 +88,11 @@ async function start(workerFn) {
     paramnames: [...snippet.paramsMod, ...snippet.paramsIc]
   };
   
-  
+  let numberOfParticles = 10;
+
   let dataPfilter = [{
     object: pompData,
-    Np: 2,
+    Np: numberOfParticles,
     filterMean: true,
     saveStates: true,
     maxFail: 3000,
@@ -142,13 +143,24 @@ async function start(workerFn) {
     header: headerStates
   });
   csvWriterFilter.writeRecords(pf.filterMean);
-  for (let i = 0; i < pf.saveStates.length; i++) {
-    const csvStates = createCsvWriter({          /* Log the saved states */
-      path: `./results/savedStates${i}.csv`,
-      header: headerStates
-    });
 
-    csvStates.writeRecords(pf.saveStates[i]); 
+  pf = pf.saveStates;
+  
+  let states = [];
+  for(let j = 0; j < numberOfParticles; j ++) {
+    states = [];
+    for (let j = 0; j < numberOfParticles; j++) {
+      for (let i = 0; i < pf.length; i++) {
+          states.push(pf[i][j])
+      }
+
+      const csvStates = createCsvWriter({          /* Log the saved states */
+        path: `./results/savedStates${j}.csv`,
+        header: headerStates
+      });
+
+      csvStates.writeRecords(states); 
+    }
   }       
 }
 
