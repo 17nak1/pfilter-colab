@@ -91,11 +91,11 @@ async function start(workerFn) {
   
   let dataPfilter = [{
     object: pompData,
-    Np: 100,
+    Np: 2,
     filterMean: true,
     saveStates: true,
     maxFail: 3000,
-    replicate: 2
+    replicate: 1
   }];
 
   console.log("Deploying job...");
@@ -128,8 +128,28 @@ async function start(workerFn) {
   }
   let loglik = mathLib.logMeanExp(allLogliks);
 
-  console.log('Best set of parameters is : ', Object.assign(pf[0].params,{loglik: loglik}));
+  // console.log('Best set of parameters is : ', Object.assign(pf[0].params,{loglik: loglik}));
+  pf = pf[0];
 
+  let headerStates = [];
+  for (let i = 0; i < Object.keys(pf.filterMean[0]).length; i++) {
+    headerStates.push({id: Object.keys(pf.filterMean[0])[i], title: Object.keys(pf.filterMean[0])[i]})
+  }
+  
+  const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+  const csvWriterFilter = createCsvWriter({
+    path: `./results/filterMean.csv`,
+    header: headerStates
+  });
+  csvWriterFilter.writeRecords(pf.filterMean);
+  for (let i = 0; i < pf.saveStates.length; i++) {
+    const csvStates = createCsvWriter({          /* Log the saved states */
+      path: `./results/savedStates${i}.csv`,
+      header: headerStates
+    });
+
+    csvStates.writeRecords(pf.saveStates[i]); 
+  }       
 }
 
 (async function run(){
