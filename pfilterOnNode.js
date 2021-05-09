@@ -12,7 +12,7 @@ async function start(workerFn) {
   require('dcp-client').initSync(process.argv);
   const compute = require('dcp/compute');
   const wallet = require('dcp/wallet');
-  const dcpCli = require('dcp/dcp-cli');
+  const dcpCli = require('dcp/cli');
   const identityKeystore = await dcpCli.getIdentityKeystore();
   wallet.addId(identityKeystore);
   const accountKeystore = await dcpCli.getAccountKeystore();
